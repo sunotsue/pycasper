@@ -1,29 +1,30 @@
-import pickle as pkl
+import argparse
+import copy
 import json
 import os
-import sys
-from datetime import datetime
-from tqdm import tqdm
-import copy
+import pickle as pkl
 import random
-import numpy as np
-from pathlib import Path
-import argparse
-import argunparse
-from .argsUtils import get_args_update_dict
+import sys
 import warnings
+from datetime import datetime
+from pathlib import Path
 
-from prettytable import PrettyTable
-
-from torch.utils.tensorboard import SummaryWriter
+import argunparse
+import numpy as np
 import torch
+from prettytable import PrettyTable
+from torch.utils.tensorboard import SummaryWriter
+from tqdm import tqdm
+
+from .argsUtils import get_args_update_dict
 
 try:
   from pycasper.name import Name
 except: ## only for unittest
   from name import Name
-  
+
 import pdb
+
 
 def accumulate_grads(model, grads_list):
   if grads_list:
@@ -192,6 +193,7 @@ class BookKeeper():
     if self.args.exp is not None:
       exp = 0
       exp_file = '.experiments'
+      assert os.path.isfile(exp_file) 
       if not os.path.exists(exp_file):
         with open(exp_file, 'w') as f:
           f.writelines([f'{exp}\n'])
