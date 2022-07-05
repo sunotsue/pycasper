@@ -2,6 +2,7 @@ import argparse
 import copy
 import json
 import os
+import pdb
 import pickle as pkl
 import random
 import sys
@@ -16,14 +17,14 @@ from prettytable import PrettyTable
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
+from pycasper.name import Name
+
 from .argsUtils import get_args_update_dict
 
-try:
-  from pycasper.name import Name
-except: ## only for unittest
-  from name import Name
-
-import pdb
+#try:
+#  from pycasper.name import Name
+#except: ## only for unittest
+ # from name import Name
 
 
 def accumulate_grads(model, grads_list):
@@ -192,10 +193,10 @@ class BookKeeper():
   def _update_exp(self):
     if self.args.exp is not None:
       exp = 0
-      exp_file = '.experiments'
-      assert os.path.isfile(exp_file) 
+      exp_file = 'home/suminpar/speech2ges/mix-stage/src/.experiments'
+      #assert os.path.isfile(exp_file) 
       if not os.path.exists(exp_file):
-        with open(exp_file, 'w') as f:
+        with open(exp_file, 'w+') as f:
           f.writelines([f'{exp}\n'])
       else:
         with open(exp_file, 'r') as f:

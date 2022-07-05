@@ -1,6 +1,7 @@
 import os
 import warnings
 
+
 class Name(object):
   ''' Create a name based on hyper-parameters, other arguments 
   like number of epochs or error rates
@@ -50,6 +51,9 @@ class Name(object):
 
   def dir(self, path2file='./'):
     try:
+      print('CURR DIR',os.getcwd())
+      print('PATH2FILE',path2file)
+      print('NAME',self.name[:-1])
       os.makedirs(os.path.join(path2file, self.name[:-1]))
     except OSError:
       if not os.path.isdir(path2file):
@@ -59,6 +63,9 @@ class Name(object):
 
   def __call__(self, outputkind, ext, path2file='./'):
     try:
+      print('CURR DIR',os.getcwd())
+      print('PATH2FILE',path2file)
+      print('NAME',self.name[:-1])
       os.makedirs(path2file)
     except OSError:
       if not os.path.isdir(path2file):
