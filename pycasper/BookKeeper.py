@@ -193,7 +193,7 @@ class BookKeeper():
   def _update_exp(self):
     if self.args.exp is not None:
       exp = 0
-      exp_file = 'home/suminpar/speech2ges/mix-stage/src/.experiments'
+      exp_file = 'home/suminpar/speech2ges/speech2gesture/src/.experiments'
       #assert os.path.isfile(exp_file) 
       if not os.path.exists(exp_file):
         with open(exp_file, 'w+') as f:
